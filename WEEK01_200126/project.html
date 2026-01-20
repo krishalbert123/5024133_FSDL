@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate HTML5 Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
+        nav { background: #34495e; padding: 0.5rem; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+        main { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; flex: 1; }
+        section { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .full-width { grid-column: span 2; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Digital Command Center</h1>
+    <p>Current Status: <mark>Active</mark></p>
+</header>
+
+<nav>
+    <a href="#tasks">Tasks</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#media">Media</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<main>
+    <section id="tasks">
+        <h2>Daily Goals</h2>
+        <ul>
+            <li><strong>High Priority:</strong> Finish HTML5 Project</li>
+            <li><em>Medium Priority:</em> Review CSS Flexbox</li>
+            <li><del>Low Priority: Buy groceries</del></li>
+        </ul>
+    </section>
+
+    <section id="schedule">
+        <h2>Weekly Schedule</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Activity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00 AM</td>
+                    <td>Coding Session</td>
+                </tr>
+                <tr>
+                    <td>01:00 PM</td>
+                    <td>Lunch Break</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="media" class="full-width">
+        <h2>Inspiration Media</h2>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <figure>
+                <figcaption>Inspirational Audio:</figcaption>
+                <audio controls>
+                    <source src="audio-sample.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </figure>
+            <figure>
+                <figcaption>Tutorial Video:</figcaption>
+                <video width="320" height="240" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </figure>
+        </div>
+    </section>
+
+    <section id="contact" class="full-width">
+        <h2>Quick Contact Form</h2>
+        <form action="/submit" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="rating">Skill Level:</label>
+            <input type="range" id="rating" min="1" max="10">
+            
+            <button type="submit">Submit Data</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Dashboard Project | Built with <strong>HTML5 Semantic Tags</strong></p>
+</footer>
+
+</body>
+</html>
