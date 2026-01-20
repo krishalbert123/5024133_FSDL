@@ -3,106 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate HTML5 Dashboard</title>
+    <title>The All-in-One Tech Documentation Hub</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
-        nav { background: #34495e; padding: 0.5rem; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        main { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; flex: 1; }
-        section { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #f9f9f9; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        .full-width { grid-column: span 2; }
-        footer { background: #2c3e50; color: white; text-align: center; padding: 10px; }
+        /* Smooth scrolling makes internal links feel professional */
+        html { scroll-behavior: smooth; }
+        
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; background-color: #f4f4f4; margin: 0; }
+        header { background: #333; color: white; padding: 2rem; text-align: center; }
+        section { background: white; margin: 20px auto; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 800px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        footer { text-align: center; padding: 20px; color: #666; }
     </style>
 </head>
-<body>
+<body id="top"> <header>
+        <h1>Web Development Reference</h1>
+        <p>A simple guide to <strong>HTML5</strong> features.</p>
+    </header>
 
-<header>
-    <h1>My Digital Command Center</h1>
-    <p>Current Status: <mark>Active</mark></p>
-</header>
+    <main>
+        <section id="intro">
+            <h2>Quick Introduction</h2>
+            <p>Welcome to this guide. You can visit the official 
+               <a href="https://www.w3.org/" target="_blank">W3C Website</a> 
+               to learn more about <i>web standards</i>. 
+               Remember: <mark>HTML is the skeleton of the web.</mark>
+            </p>
+        </section>
 
-<nav>
-    <a href="#tasks">Tasks</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#media">Media</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<main>
-    <section id="tasks">
-        <h2>Daily Goals</h2>
-        <ul>
-            <li><strong>High Priority:</strong> Finish HTML5 Project</li>
-            <li><em>Medium Priority:</em> Review CSS Flexbox</li>
-            <li><del>Low Priority: Buy groceries</del></li>
-        </ul>
-    </section>
-
-    <section id="schedule">
-        <h2>Weekly Schedule</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Activity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>09:00 AM</td>
-                    <td>Coding Session</td>
-                </tr>
-                <tr>
-                    <td>01:00 PM</td>
-                    <td>Lunch Break</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="media" class="full-width">
-        <h2>Inspiration Media</h2>
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <figure>
-                <figcaption>Inspirational Audio:</figcaption>
-                <audio controls>
-                    <source src="audio-sample.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </figure>
-            <figure>
-                <figcaption>Tutorial Video:</figcaption>
-                <video width="320" height="240" controls>
-                    <source src="movie.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </figure>
-        </div>
-    </section>
-
-    <section id="contact" class="full-width">
-        <h2>Quick Contact Form</h2>
-        <form action="/submit" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your name">
+        <section id="features">
+            <h2>Core Features</h2>
             
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="rating">Skill Level:</label>
-            <input type="range" id="rating" min="1" max="10">
-            
-            <button type="submit">Submit Data</button>
-        </form>
-    </section>
-</main>
+            <ul>
+                <li><b>Elements:</b> The tags like &lt;p&gt; or &lt;h1&gt;.</li>
+                <li><b>Attributes:</b> Properties like <u>href</u> or <u>src</u>.</li>
+                <li><b>Semantic Tags:</b> Tags like &lt;header&gt; and &lt;footer&gt;.</li>
+            </ul>
+        </section>
 
-<footer>
-    <p>&copy; 2026 Dashboard Project | Built with <strong>HTML5 Semantic Tags</strong></p>
-</footer>
+        <section id="data">
+            <h2>Comparison Table</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Tag Used</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Links</td>
+                        <td>&lt;a&gt;</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Lists</td>
+                        <td>&lt;ul&gt; / &lt;ol&gt;</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Web Tech Hub | <a href="#top">Back to top</a></p>
+    </footer>
 
 </body>
 </html>
