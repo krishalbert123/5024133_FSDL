@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The All-in-One Tech Documentation Hub</title>
+    <style>
+        /* Smooth scrolling makes internal links feel professional */
+        html { scroll-behavior: smooth; }
+
+        :root{
+            --bg: #f4f6fb;
+            --card: #ffffff;
+            --primary: #0d6efd; /* blue */
+            --accent: #6f42c1; /* purple */
+            --text: #222831;
+            --muted: #6c757d;
+            --surface-shadow: 0 4px 14px rgba(13,110,253,0.06);
+            --font-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-heading: "Segoe UI Semibold", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Page baseline */
+        body {
+            font-family: var(--font-sans);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 24px;
+            margin: 0;
+            background: linear-gradient(180deg, var(--bg) 0%, #eef3fb 100%);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header with decorative pseudo-element */
+        header{
+            background: linear-gradient(90deg, #0b5ed7, #6610f2);
+            color: #fff;
+            padding: 2.25rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::after{
+            content: "";
+            position: absolute;
+            right: -60px;
+            top: -40px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 40%);
+            transform: rotate(25deg);
+            pointer-events: none;
+        }
+        header h1{ font-family: var(--font-heading); margin: 0 0 0.2rem 0; letter-spacing: 0.6px; }
+        header p{ margin: 0; color: rgba(255,255,255,0.92); }
+        /* Top navigation inside header */
+        .topnav{ display: flex; gap: 12px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+        .topnav a{ color: rgba(255,255,255,0.95); text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+        .topnav a:hover, .topnav a:focus{ background: rgba(255,255,255,0.06); outline: none; }
+
+        /* Card-like sections */
+        section{
+            background: var(--card);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--surface-shadow);
+            max-width: 880px;
+        }
+
+        /* Headings: add an underline using a pseudo-element */
+        h2{ position: relative; font-family: var(--font-heading); margin-top: 0; }
+        h2::after{
+            content: "";
+            display: block;
+            height: 4px;
+            width: 64px;
+            background: linear-gradient(90deg,var(--primary),var(--accent));
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        /* Lists with custom markers using pseudo-elements */
+        ul{ padding-left: 1rem; margin-top: 0; }
+        ul li{ margin: 0.6rem 0; padding-left: 10px; position: relative; }
+        ul li::before{
+            content: "\2022"; /* bullet */
+            color: var(--primary);
+            font-weight: 700;
+            position: absolute;
+            left: -1rem;
+            top: 0;
+        }
+
+        /* Demo list to show :hover and nth-child pseudo-class */
+        .demo-list li{ transition: background .18s ease, transform .12s ease; }
+        .demo-list li:hover{ background: rgba(13,110,253,0.04); transform: translateY(-2px); }
+        .demo-list li:nth-child(odd)::before{ color: var(--accent); }
+
+        /* Make emphasized inline elements stand out */
+        mark{ background: linear-gradient(90deg,#fff59d,#fff176); padding: 0 3px; border-radius: 2px; }
+
+        /* Table styling with zebra stripes and hover */
+        table{ width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.95rem; }
+        th, td{ border: 1px solid #e9eef8; padding: 12px; text-align: left; }
+        th{ background: linear-gradient(90deg,var(--primary), #198754); color: #fff; }
+        tbody tr:nth-child(even){ background: #fbfdff; }
+        tbody tr:hover{ background: rgba(13,110,253,0.04); }
+
+        /* Links and external link indicator via attribute selector and pseudo-element */
+        a{ color: var(--primary); text-decoration: none; }
+        a:hover, a:focus{ text-decoration: underline; color: #084298; outline: none; }
+        a[target="_blank"]::after{ content: " ↗"; font-size: 0.9em; color: var(--muted); }
+
+        /* Accessible focus styles */
+        a:focus{ box-shadow: 0 0 0 3px rgba(13,110,253,0.15); border-radius: 4px; }
+
+        /* Footer */
+        footer{ text-align: center; padding: 18px; color: var(--muted); font-size: 0.95rem; }
+
+        /* Pseudo-element styling for paragraphs */
+        p::first-letter{ font-size: 1.35em; font-weight: 700; color: var(--primary); }
+
+        /* Code block styling */
+        pre{ background: #0b1220; color: #e6f0ff; padding: 12px; border-radius: 8px; overflow:auto; }
+        code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; font-size: 0.95em; }
+        pre code{ background: transparent; color: inherit; }
+
+        /* Blockquote demonstration with pseudo-element */
+        blockquote{ border-left: 4px solid rgba(13,110,253,0.18); padding: 10px 14px; margin: 12px 0; background: #fbfdff; }
+        blockquote::before{ content: "“"; font-size: 2.2rem; color: rgba(13,110,253,0.12); margin-right: 6px; vertical-align: middle; }
+
+        /* Utility selectors */
+        .muted{ color: var(--muted); }
+        .accent{ color: var(--accent); }
+
+        /* Small responsive tweak */
+        @media (max-width:600px){
+            body{ padding: 12px; }
+            section{ margin: 12px 8px; padding: 16px; }
+        }
+    </style>
+</head>
+<body id="top"> <header>
+        <h1>Web Development Reference</h1>
+        <p>A simple guide to <strong>HTML5</strong> features.</p>
+        <nav class="topnav" aria-label="Primary">
+            <a href="#intro">Intro</a>
+            <a href="#features">Features</a>
+            <a href="#data">Data</a>
+            <a href="#css-examples">CSS Examples</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro">
+            <h2>Quick Introduction</h2>
+            <p>Welcome to this guide. You can visit the official 
+               <a href="https://www.w3.org/" target="_blank">W3C Website</a> 
+               to learn more about <i>web standards</i>. 
+               Remember: <mark>HTML is the skeleton of the web.</mark>
+            </p>
+        </section>
+
+        <section id="css-examples">
+            <h2>CSS Examples (Selectors & Pseudo)</h2>
+            <p>Below are small demonstrations of selectors, pseudo-classes, and pseudo-elements.</p>
+
+            <h3>List with pseudo-classes</h3>
+            <ul class="demo-list">
+                <li>Hover me to see <em>hover</em> effect.</li>
+                <li>Odd items get a different marker color via <code>:nth-child()</code>.</li>
+                <li>Transitions show interactive feedback.</li>
+            </ul>
+
+            <h3>Definition list (semantic)</h3>
+            <dl>
+                <dt>Selector</dt>
+                <dd>Targets elements in CSS (e.g., <code>h2</code>, <code>.class</code>).</dd>
+                <dt>Pseudo-class</dt>
+                <dd>State-based selector like <code>:hover</code>, <code>:focus</code>.</dd>
+            </dl>
+
+            <h3>Pseudo-elements & quotes</h3>
+            <blockquote>Using <code>::before</code> to add decorative quotes to blockquotes.</blockquote>
+
+            <h3>Code sample</h3>
+            <pre><code>/* Example: highlight every 3rd list item */
+ul li:nth-child(3n){ background: rgba(111,66,193,0.06); }
+            </code></pre>
+        </section>
+
+        <section id="features">
+            <h2>Core Features</h2>
+            
+            <ul>
+                <li><b>Elements:</b> The tags like &lt;p&gt; or &lt;h1&gt;.</li>
+                <li><b>Attributes:</b> Properties like <u>href</u> or <u>src</u>.</li>
+                <li><b>Semantic Tags:</b> Tags like &lt;header&gt; and &lt;footer&gt;.</li>
+            </ul>
+        </section>
+
+        <section id="data">
+            <h2>Comparison Table</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Tag Used</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Links</td>
+                        <td>&lt;a&gt;</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Lists</td>
+                        <td>&lt;ul&gt; / &lt;ol&gt;</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Web Tech Hub | <a href="#top">Back to top</a></p>
+    </footer>
+
+</body>
+</html>

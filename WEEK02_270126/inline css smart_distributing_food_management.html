@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Distributing Food Management System</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+    <header style="background-color: #4CAF50; color: white; padding: 20px; text-align: center; border-radius: 8px;">
+        <h1 style="margin: 0;">Smart Distributing Food Management System</h1>
+        <p style="margin: 10px 0 0 0;">Efficiently manage and distribute food resources</p>
+    </header>
+
+    <section style="margin-top: 20px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <h2 style="color: #333; margin-bottom: 20px;">Food Inventory</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Item Name</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Quantity</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Expiration Date</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">Rice</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">100 kg</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">2026-03-15</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">
+                        <button style="background-color: #2196F3; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Distribute</button>
+                        <button style="background-color: #f44336; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">Beans</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">50 kg</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">2026-04-20</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">
+                        <button style="background-color: #2196F3; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Distribute</button>
+                        <button style="background-color: #f44336; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section style="margin-top: 20px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <h2 style="color: #333; margin-bottom: 20px;">Add New Food Item</h2>
+        <form style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <label for="itemName" style="display: block; margin-bottom: 5px; font-weight: bold;">Item Name:</label>
+                <input type="text" id="itemName" name="itemName" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </div>
+            <div>
+                <label for="quantity" style="display: block; margin-bottom: 5px; font-weight: bold;">Quantity:</label>
+                <input type="text" id="quantity" name="quantity" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </div>
+            <div>
+                <label for="expiration" style="display: block; margin-bottom: 5px; font-weight: bold;">Expiration Date:</label>
+                <input type="date" id="expiration" name="expiration" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </div>
+            <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-size: 16px;">Add Item</button>
+        </form>
+    </section>
+
+    <footer style="margin-top: 20px; text-align: center; color: #666;">
+        <p>&copy; 2026 Smart Food Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
