@@ -9,13 +9,13 @@
         html { scroll-behavior: smooth; }
 
         :root{
-            --bg: #f4f6fb;
-            --card: #ffffff;
-            --primary: #0d6efd; /* blue */
-            --accent: #6f42c1; /* purple */
-            --text: #222831;
-            --muted: #6c757d;
-            --surface-shadow: 0 4px 14px rgba(13,110,253,0.06);
+            --bg: #2c3e50;
+            --card: #34495e;
+            --primary: #4CAF50; /* green */
+            --accent: #FF9800; /* orange */
+            --text: #ecf0f1;
+            --muted: #bdc3c7;
+            --surface-shadow: 0 4px 14px rgba(76,175,80,0.1);
             --font-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             --font-heading: "Segoe UI Semibold", "Helvetica Neue", Arial, sans-serif;
         }
@@ -27,13 +27,13 @@
             line-height: 1.6;
             padding: 24px;
             margin: 0;
-            background: linear-gradient(180deg, var(--bg) 0%, #eef3fb 100%);
+            background: var(--bg);
             -webkit-font-smoothing: antialiased;
         }
 
         /* Header with decorative pseudo-element */
         header{
-            background: linear-gradient(90deg, #0b5ed7, #6610f2);
+            background: linear-gradient(90deg, #4CAF50, #FF9800);
             color: #fff;
             padding: 2.25rem 1rem;
             text-align: center;
@@ -94,7 +94,7 @@
 
         /* Demo list to show :hover and nth-child pseudo-class */
         .demo-list li{ transition: background .18s ease, transform .12s ease; }
-        .demo-list li:hover{ background: rgba(13,110,253,0.04); transform: translateY(-2px); }
+        .demo-list li:hover{ background: rgba(76,175,80,0.1); transform: translateY(-2px); }
         .demo-list li:nth-child(odd)::before{ color: var(--accent); }
 
         /* Make emphasized inline elements stand out */
@@ -102,18 +102,18 @@
 
         /* Table styling with zebra stripes and hover */
         table{ width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.95rem; }
-        th, td{ border: 1px solid #e9eef8; padding: 12px; text-align: left; }
+        th, td{ border: 1px solid #444; padding: 12px; text-align: left; }
         th{ background: linear-gradient(90deg,var(--primary), #198754); color: #fff; }
-        tbody tr:nth-child(even){ background: #fbfdff; }
-        tbody tr:hover{ background: rgba(13,110,253,0.04); }
+        tbody tr:nth-child(even){ background: rgba(255,255,255,0.05); }
+        tbody tr:hover{ background: rgba(76,175,80,0.1); }
 
         /* Links and external link indicator via attribute selector and pseudo-element */
         a{ color: var(--primary); text-decoration: none; }
-        a:hover, a:focus{ text-decoration: underline; color: #084298; outline: none; }
+        a:hover, a:focus{ text-decoration: underline; color: #2e7d32; outline: none; }
         a[target="_blank"]::after{ content: " ↗"; font-size: 0.9em; color: var(--muted); }
 
         /* Accessible focus styles */
-        a:focus{ box-shadow: 0 0 0 3px rgba(13,110,253,0.15); border-radius: 4px; }
+        a:focus{ box-shadow: 0 0 0 3px rgba(76,175,80,0.15); border-radius: 4px; }
 
         /* Footer */
         footer{ text-align: center; padding: 18px; color: var(--muted); font-size: 0.95rem; }
@@ -127,8 +127,8 @@
         pre code{ background: transparent; color: inherit; }
 
         /* Blockquote demonstration with pseudo-element */
-        blockquote{ border-left: 4px solid rgba(13,110,253,0.18); padding: 10px 14px; margin: 12px 0; background: #fbfdff; }
-        blockquote::before{ content: "“"; font-size: 2.2rem; color: rgba(13,110,253,0.12); margin-right: 6px; vertical-align: middle; }
+        blockquote{ border-left: 4px solid rgba(76,175,80,0.3); padding: 10px 14px; margin: 12px 0; background: rgba(255,255,255,0.05); }
+        blockquote::before{ content: "“"; font-size: 2.2rem; color: rgba(76,175,80,0.2); margin-right: 6px; vertical-align: middle; }
 
         /* Utility selectors */
         .muted{ color: var(--muted); }

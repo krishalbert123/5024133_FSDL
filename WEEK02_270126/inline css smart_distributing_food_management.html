@@ -1,71 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Distributing Food Management System</title>
+    <title>Smart Redistribution Food Management System</title>
 </head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
-    <header style="background-color: #4CAF50; color: white; padding: 20px; text-align: center; border-radius: 8px;">
-        <h1 style="margin: 0;">Smart Distributing Food Management System</h1>
-        <p style="margin: 10px 0 0 0;">Efficiently manage and distribute food resources</p>
-    </header>
 
-    <section style="margin-top: 20px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h2 style="color: #333; margin-bottom: 20px;">Food Inventory</h2>
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr style="background-color: #f2f2f2;">
-                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Item Name</th>
-                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Quantity</th>
-                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Expiration Date</th>
-                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 12px;">Rice</td>
-                    <td style="border: 1px solid #ddd; padding: 12px;">100 kg</td>
-                    <td style="border: 1px solid #ddd; padding: 12px;">2026-03-15</td>
-                    <td style="border: 1px solid #ddd; padding: 12px;">
-                        <button style="background-color: #2196F3; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Distribute</button>
-                        <button style="background-color: #f44336; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 12px;">Beans</td>
-                    <td style="border: 1px solid #ddd; padding: 12px;">50 kg</td>
-                    <td style="border: 1px solid #ddd; padding: 12px;">2026-04-20</td>
-                    <td style="border: 1px solid #ddd; padding: 12px;">
-                        <button style="background-color: #2196F3; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Distribute</button>
-                        <button style="background-color: #f44336; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+<body style="margin:0; font-family:Arial, sans-serif; background-color:#f4f4f4;">
 
-    <section style="margin-top: 20px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h2 style="color: #333; margin-bottom: 20px;">Add New Food Item</h2>
-        <form style="display: flex; flex-direction: column; gap: 15px;">
-            <div>
-                <label for="itemName" style="display: block; margin-bottom: 5px; font-weight: bold;">Item Name:</label>
-                <input type="text" id="itemName" name="itemName" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-            </div>
-            <div>
-                <label for="quantity" style="display: block; margin-bottom: 5px; font-weight: bold;">Quantity:</label>
-                <input type="text" id="quantity" name="quantity" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-            </div>
-            <div>
-                <label for="expiration" style="display: block; margin-bottom: 5px; font-weight: bold;">Expiration Date:</label>
-                <input type="date" id="expiration" name="expiration" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-            </div>
-            <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-size: 16px;">Add Item</button>
-        </form>
-    </section>
+<!-- HEADER -->
+<div style="background-color:#2e8b57; color:white; padding:20px; text-align:center;">
+    <h1>Smart Redistribution Food Management System</h1>
+    <p>Reduce Food Waste • Feed the Needy</p>
+</div>
 
-    <footer style="margin-top: 20px; text-align: center; color: #666;">
-        <p>&copy; 2026 Smart Food Management System. All rights reserved.</p>
-    </footer>
+<!-- NAVIGATION -->
+<div style="background-color:#333; padding:10px; text-align:center;">
+    <a href="#home" style="color:white; margin:15px; text-decoration:none;">Home</a>
+    <a href="#donate" style="color:white; margin:15px; text-decoration:none;">Donate Food</a>
+    <a href="#request" style="color:white; margin:15px; text-decoration:none;">Request Food</a>
+    <a href="#available" style="color:white; margin:15px; text-decoration:none;">Available Food</a>
+    <a href="#volunteer" style="color:white; margin:15px; text-decoration:none;">Volunteer</a>
+    <a href="#contact" style="color:white; margin:15px; text-decoration:none;">Contact</a>
+</div>
+
+<!-- HOME / ABOUT -->
+<div id="home" style="padding:20px;">
+    <h2>About the System</h2>
+    <p>
+        The Smart Redistribution Food Management System helps collect surplus food from donors
+        and redistribute it to NGOs and needy people efficiently, reducing food wastage
+        and supporting sustainability.
+    </p>
+</div>
+
+<!-- DONATE FOOD -->
+<div id="donate" style="padding:20px; background-color:#ffffff; margin:20px; border-radius:5px;">
+    <h2>Food Donation Form</h2>
+
+    <form>
+        <label>Donor Name:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Contact Number:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Location:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Food Type:</label><br>
+        <select style="width:100%; padding:8px;">
+            <option>Vegetarian</option>
+            <option>Non-Vegetarian</option>
+        </select><br><br>
+
+        <label>Food Category:</label><br>
+        <select style="width:100%; padding:8px;">
+            <option>Cooked</option>
+            <option>Packed</option>
+        </select><br><br>
+
+        <label>Quantity (plates/kg):</label><br>
+        <input type="number" style="width:100%; padding:8px;"><br><br>
+
+        <label>Freshness Duration (hours):</label><br>
+        <input type="number" style="width:100%; padding:8px;"><br><br>
+
+        <label>Special Instructions:</label><br>
+        <textarea style="width:100%; padding:8px;"></textarea><br><br>
+
+        <input type="submit" value="Donate Food" style="background-color:#2e8b57; color:white; padding:10px 20px; border:none;">
+    </form>
+</div>
+
+<!-- REQUEST FOOD -->
+<div id="request" style="padding:20px; background-color:#ffffff; margin:20px; border-radius:5px;">
+    <h2>Food Request Form (NGOs / Shelters)</h2>
+
+    <form>
+        <label>Organization Name:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Required Quantity:</label><br>
+        <input type="number" style="width:100%; padding:8px;"><br><br>
+
+        <label>Location:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Preferred Time:</label><br>
+        <input type="time" style="width:100%; padding:8px;"><br><br>
+
+        <label>Contact Number:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <input type="submit" value="Request Food" style="background-color:#ff9800; color:white; padding:10px 20px; border:none;">
+    </form>
+</div>
+
+<!-- AVAILABLE FOOD -->
+<div id="available" style="padding:20px;">
+    <h2>Available Food List</h2>
+
+    <table border="1" width="100%" style="border-collapse:collapse; background-color:white;">
+        <tr style="background-color:#2e8b57; color:white;">
+            <th>Donor</th>
+            <th>Food Type</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Hotel Sunrise</td>
+            <td>Veg</td>
+            <td>50 plates</td>
+            <td>Andheri</td>
+            <td style="color:green;">Available</td>
+        </tr>
+        <tr>
+            <td>Marriage Hall</td>
+            <td>Non-Veg</td>
+            <td>30 plates</td>
+            <td>Borivali</td>
+            <td style="color:orange;">Pending</td>
+        </tr>
+    </table>
+</div>
+
+<!-- SMART FEATURES -->
+<div style="padding:20px; background-color:#ffffff; margin:20px;">
+    <h2>Smart Redistribution Features</h2>
+    <ul>
+        <li>Nearest NGO selection</li>
+        <li>Expiry-time based priority</li>
+        <li>First In First Out (FIFO) distribution</li>
+        <li>Reduced food wastage</li>
+        <li>Faster food delivery</li>
+    </ul>
+</div>
+
+<!-- VOLUNTEER -->
+<div id="volunteer" style="padding:20px; background-color:#ffffff; margin:20px;">
+    <h2>Volunteer Registration</h2>
+
+    <form>
+        <label>Name:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Service Area:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <label>Vehicle Available:</label><br>
+        <select style="width:100%; padding:8px;">
+            <option>Yes</option>
+            <option>No</option>
+        </select><br><br>
+
+        <label>Contact Number:</label><br>
+        <input type="text" style="width:100%; padding:8px;"><br><br>
+
+        <input type="submit" value="Register Volunteer" style="background-color:#2196f3; color:white; padding:10px 20px; border:none;">
+    </form>
+</div>
+
+<!-- IMPACT -->
+<div style="padding:20px;">
+    <h2>Impact Statistics</h2>
+    <p>🍛 Food Saved: 1200 Plates</p>
+    <p>👨‍👩‍👧 People Fed: 850</p>
+    <p>🏥 NGOs Connected: 12</p>
+    <p>🤝 Volunteers: 30</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" style="padding:20px; background-color:#333; color:white;">
+    <h2>Contact Us</h2>
+    <p>Email: foodredistribution@gmail.com</p>
+    <p>Phone: +91 9876543210</p>
+    <p>Address: Mumbai, India</p>
+</div>
+
+<!-- FOOTER -->
+<div style="background-color:#2e8b57; color:white; text-align:center; padding:10px;">
+    <p>Project by Student Name | College Name | 2026</p>
+</div>
+
 </body>
 </html>
+
+    
