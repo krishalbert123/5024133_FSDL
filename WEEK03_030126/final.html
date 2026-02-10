@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Community Food Hub — Final Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+      :root{--brand:#2a9d8f}
+      body{background:#f4fbff;font-family:system-ui,Segoe UI,Roboto,Arial}
+      .hero{
+        background-image: linear-gradient(120deg, rgba(10,25,47,0.55), rgba(42,157,143,0.45)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80');
+        background-size:cover;background-position:center;color:#fff;padding:4.5rem 0;border-radius:8px}
+      .feature-card:hover{transform:translateY(-6px);transition:all .18s ease}
+      .form-section{background:#fff;border-radius:10px;padding:1.25rem;box-shadow:0 10px 30px rgba(16,24,40,.06)}
+      footer{font-size:.9rem;padding:2rem 0;color:#64748b}
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-heart-fill text-success me-2"></i>
+          <span class="fw-bold">Community Food Hub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+            <li class="nav-item"><a class="nav-link" href="#volunteer">Volunteer</a></li>
+          </ul>
+          <form class="d-flex ms-3" role="search">
+            <input class="form-control form-control-sm me-2" placeholder="Search programs">
+            <button class="btn btn-sm btn-outline-primary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-4">
+      <!-- Breadcrumb -->
+      <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent p-0">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Community</li>
+          <li class="breadcrumb-item active" aria-current="page">Food Hub</li>
+        </ol>
+      </nav>
+
+      <!-- Jumbotron / Hero -->
+      <section class="hero mb-4">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-7 text-white">
+              <h1 class="display-5 fw-bold">Connect donors, volunteers and communities</h1>
+              <p class="lead">A one-page demo that uses Bootstrap grid, forms, buttons, navbar and breadcrumb to showcase a friendly interface for food distribution coordination.</p>
+              <div class="mt-3">
+                <a href="#volunteer" class="btn btn-lg btn-light me-2">Join as Volunteer</a>
+                <a href="#programs" class="btn btn-lg btn-outline-light">Explore Programs</a>
+              </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block text-white">
+              <div class="card bg-white text-dark p-3 shadow-sm" style="border-radius:12px">
+                <div class="card-body">
+                  <h6 class="mb-1">Quick Stats</h6>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <div class="h4 mb-0">1,240</div>
+                      <small class="text-muted">Meals Distributed</small>
+                    </div>
+                    <div>
+                      <div class="h4 mb-0">85</div>
+                      <small class="text-muted">Active Volunteers</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="row g-4">
+        <!-- Grid: Programs -->
+        <div class="col-lg-8">
+          <h4 id="programs" class="mb-3">Programs & Events</h4>
+          <div class="row row-cols-1 row-cols-md-2 g-3">
+            <div class="col">
+              <div class="card feature-card shadow-sm p-2">
+                <div class="card-body">
+                  <h5 class="card-title">Weekend Meal Drive</h5>
+                  <p class="card-text small text-muted">Distribute prepared meals across three neighborhoods every Saturday.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal" data-role="driver">Sign Up</button>
+                      <button class="btn btn-sm btn-outline-secondary ms-1">Details</button>
+                    </div>
+                    <small class="text-muted">Sat · 9:00 AM</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card feature-card shadow-sm p-2">
+                <div class="card-body">
+                  <h5 class="card-title">Pantry Pack</h5>
+                  <p class="card-text small text-muted">Monthly pack distribution for families in need.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#signupModal" data-role="packer">Volunteer</button>
+                      <button class="btn btn-sm btn-outline-secondary ms-1">Details</button>
+                    </div>
+                    <small class="text-muted">1st of month</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card feature-card shadow-sm p-2">
+                <div class="card-body">
+                  <h5 class="card-title">Grocery Rescue</h5>
+                  <p class="card-text small text-muted">Collect surplus goods from partner stores to reduce waste.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#signupModal" data-role="driver">Driver</button>
+                      <button class="btn btn-sm btn-outline-secondary ms-1">Details</button>
+                    </div>
+                    <small class="text-muted">Daily pickups</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card feature-card shadow-sm p-2">
+                <div class="card-body">
+                  <h5 class="card-title">Community Kitchen</h5>
+                  <p class="card-text small text-muted">Cook and serve hot meals using donated ingredients.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-info text-white" data-bs-toggle="modal" data-bs-target="#signupModal" data-role="cook">Cook</button>
+                      <button class="btn btn-sm btn-outline-secondary ms-1">Details</button>
+                    </div>
+                    <small class="text-muted">Mon–Fri</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="mt-4 d-flex gap-2">
+            <button id="loadDemo" class="btn btn-outline-primary">Load Demo Data</button>
+            <button id="clearDemo" class="btn btn-outline-danger">Clear Data</button>
+          </div>
+        </div>
+
+        <!-- Form: Volunteer / Donate -->
+        <div class="col-lg-4">
+          <div class="form-section">
+            <h5 id="volunteer">Sign up to help</h5>
+            <p class="small text-muted">Join as a volunteer or submit a donation offer.</p>
+            <form id="signupForm" novalidate>
+              <div class="mb-2">
+                <label class="form-label">Full name</label>
+                <input required name="name" class="form-control" placeholder="Jane Doe">
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Contact phone</label>
+                <input name="phone" class="form-control" placeholder="optional">
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Role</label>
+                <select required name="role" class="form-select">
+                  <option value="Volunteer">Volunteer</option>
+                  <option value="Driver">Driver</option>
+                  <option value="Cook">Cook</option>
+                  <option value="Donor">Donor</option>
+                </select>
+                <div class="invalid-feedback">Choose a role.</div>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Notes</label>
+                <textarea name="notes" rows="3" class="form-control" placeholder="Availability, vehicle info, allergy notes"></textarea>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="resetForm" class="btn btn-outline-secondary">Reset</button>
+              </div>
+            </form>
+            <div class="mt-3 small text-muted">Submissions saved locally for demo purposes.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Signup confirmation -->
+      <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <p id="modalText">Complete the form to sign up.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-white mt-5">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>© Community Food Hub</div>
+        <div class="small text-muted">Built with Bootstrap — demo only</div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Local demo storage for signups
+      const KEY = 'cfh_signups_v1';
+      let signups = JSON.parse(localStorage.getItem(KEY) || '[]');
+
+      const form = document.getElementById('signupForm');
+      const resetBtn = document.getElementById('resetForm');
+      const loadDemo = document.getElementById('loadDemo');
+      const clearDemo = document.getElementById('clearDemo');
+      const modal = new bootstrap.Modal(document.getElementById('signupModal'));
+      const modalText = document.getElementById('modalText');
+
+      function save(){ localStorage.setItem(KEY, JSON.stringify(signups)); }
+
+      function renderCount(){ /* optional: show counts or list */ }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if(!form.checkValidity()){ form.classList.add('was-validated'); return; }
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.id = Date.now().toString(36);
+        data.created = Date.now();
+        signups.push(data); save(); form.reset(); form.classList.remove('was-validated');
+        modalText.textContent = `Thanks, ${data.name || 'friend'} — we've saved your sign-up as ${data.role}.`;
+        modal.show(); renderCount();
+      });
+
+      resetBtn.addEventListener('click', ()=>{ form.reset(); form.classList.remove('was-validated'); });
+
+      loadDemo.addEventListener('click', ()=>{
+        signups.push({id:'demo1',name:'Ana K',phone:'',role:'Volunteer',notes:'Weekends'});
+        signups.push({id:'demo2',name:'Mark P',phone:'',role:'Driver',notes:'Has van'});
+        save(); renderCount(); alert('Demo data loaded');
+      });
+
+      clearDemo.addEventListener('click', ()=>{ if(confirm('Clear all demo signups?')){ signups=[]; save(); renderCount(); } });
+
+      // Modal trigger text by button role
+      document.querySelectorAll('[data-bs-target="#signupModal"]').forEach(btn=>{
+        btn.addEventListener('click', e=>{
+          const role = btn.dataset.role || 'Volunteer';
+          modalText.textContent = `You are signing up as: ${role}. Please complete the form on the right and submit.`;
+        });
+      });
+
+      renderCount();
+    </script>
+  </body>
+</html>
