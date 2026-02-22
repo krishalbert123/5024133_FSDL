@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Luxury Car Website</title>
+
+    <!-- Internal CSS Inclusion -->
+    <style>
+
+        /* CSS3 Syntax */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif; /* Fonts */
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Background */
+            color: white; /* Color */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: black;
+        }
+
+        /* Pseudo Element */
+        header h1::after {
+            content: " 🚗";
+        }
+
+        /* Navigation List */
+        nav ul {
+            list-style-type: none; /* Lists */
+            background-color: #111;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Pseudo Class */
+        nav ul li a:hover {
+            color: red;
+        }
+
+        /* Class Selector */
+        .cars {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px;
+        }
+
+        .card {
+            background-color: #1c1c1c;
+            width: 300px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        /* Pseudo Class */
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Element Selector */
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #111;
+        }
+
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* nth-child Selector */
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: black;
+        }
+
+        /* Attribute Selector */
+        a[href="#"] {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Dream Luxury Cars</h1>
+    <p>Experience Speed & Elegance</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Cars</a></li>
+        <li><a href="#">Prices</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="cars">
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a" alt="BMW">
+        <h2>BMW M4</h2>
+        <p>High-performance German sports car.</p>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c" alt="Audi">
+        <h2>Audi R8</h2>
+        <p>Luxury combined with extreme power.</p>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753" alt="Lamborghini">
+        <h2>Lamborghini Aventador</h2>
+        <p>Italian masterpiece of speed.</p>
+    </div>
+
+</section>
+
+<h2 style="text-align:center;">Car Price List</h2>
+
+<table>
+    <tr>
+        <th>Car</th>
+        <th>Price</th>
+        <th>Country</th>
+    </tr>
+    <tr>
+        <td>BMW M4</td>
+        <td>$75,000</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>Audi R8</td>
+        <td>$150,000</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>Lamborghini</td>
+        <td>$200,000</td>
+        <td>Italy</td>
+    </tr>
+</table>
+
+<footer>
+    <p>© 2026 Luxury Car Website | Designed using CSS3</p>
+</footer>
+
+</body>
+</html>

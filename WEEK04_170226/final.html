@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exploreville — Single File</title>
+  <style>
+    :root{--accent:#2a9d8f;--muted:#6c757d}
+    *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+    body{margin:0;line-height:1.4;color:#222}
+    header{background:var(--accent);color:#fff;padding:12px 18px}
+    header h1{margin:0;font-size:20px}
+    nav{margin-top:8px}
+    nav a{color:#fff;margin-right:12px;text-decoration:none;cursor:pointer}
+    .hero{padding:18px;background:#f7f7f7}
+    .card{background:#fff;padding:12px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-top:12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .grid .card img{width:100%;height:140px;object-fit:cover;border-radius:6px}
+    main{padding:18px}
+    footer{padding:12px 18px;background:#eee;color:#333}
+    form{display:grid;gap:8px;max-width:420px}
+    input,textarea{padding:8px;border:1px solid #ccc;border-radius:4px}
+    button{background:var(--accent);color:#fff;padding:8px 12px;border:none;border-radius:4px;cursor:pointer}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exploreville</h1>
+    <nav>
+      <a data-target="home">Home</a>
+      <a data-target="attractions">Attractions</a>
+      <a data-target="gallery">Gallery</a>
+      <a data-target="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <div class="hero">
+        <h2>Discover beautiful places</h2>
+        <p>Welcome to Exploreville — a compact tourist demo showing JavaScript fundamentals.</p>
+        <button id="surpriseBtn">Surprise me!</button>
+        <div id="surprise" class="card"></div>
+      </div>
+      <div class="card">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a data-target="attractions">See attractions (objects & classes)</a></li>
+          <li><a data-target="gallery">View gallery (loops & DOM)</a></li>
+          <li><a data-target="contact">Contact (events & validation)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="attractions" class="hidden">
+      <h2>Featured attractions (objects & classes)</h2>
+      <div id="attractions-list" class="grid"></div>
+    </section>
+
+    <section id="gallery" class="hidden">
+      <h2>Photo Gallery</h2>
+      <div id="gallery-list" class="grid"></div>
+    </section>
+
+    <section id="contact" class="hidden">
+      <h2>Get in touch</h2>
+      <form id="contactForm">
+        <label for="name">Name</label>
+        <input id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+      <div id="contactResult" class="card"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>&copy; 2026 Exploreville</small>
+  </footer>
+
+  <script>
+    // Single-file SPA script demonstrating JS fundamentals
+
+    // --- Classes & Objects ---
+    class Attraction {
+      constructor(name, city, img, description, rating){
+        this.name = name; this.city = city; this.img = img; this.description = description; this.rating = rating;
+      }
+      getSummary(){ return `${this.name} — ${this.city} (${this.rating}/5)`; }
+    }
+
+    // --- Variables & Operators ---
+    const attractions = [
+      new Attraction('Sunset Cliff', 'Coastville', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=60', 'Cliffs with panoramic ocean views.', 4.6),
+      new Attraction('Greenwood Park', 'Mapleton', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=60', 'Large park with walking trails and gardens.', 4.2),
+      new Attraction('Old Town Square', 'Historica', 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=60', 'Cobblestone streets and cafes.', 4.8)
+    ];
+
+    // random featured index (operators)
+    const featuredIndex = Math.floor(Math.random() * attractions.length);
+
+    // --- Functions ---
+    function renderAttractions(){
+      const container = document.getElementById('attractions-list');
+      container.innerHTML = '';
+      for(const attr of attractions){ // loop
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `\n          <img src="${attr.img}" alt="${attr.name}" />\n          <h4>${attr.name}</h4>\n          <p>${attr.city} — Rating: ${attr.rating}</p>\n          <button class="detailsBtn">Details</button>\n        `;
+        const btn = card.querySelector('.detailsBtn');
+        btn.addEventListener('click', () => showDetails(attr)); // event
+        container.appendChild(card);
+      }
+    }
+
+    function renderGallery(){
+      const g = document.getElementById('gallery-list');
+      g.innerHTML = '';
+      for(let i=0;i<attractions.length;i++){ // for loop with index
+        const a = attractions[i];
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<img src="${a.img}" alt="${a.name}"><h4>${a.name}</h4>`;
+        g.appendChild(card);
+      }
+    }
+
+    function showDetails(attraction){
+      // condition and ternary operator
+      const highRated = attraction.rating >= 4.5 ? 'Highly recommended' : 'Nice place to visit';
+      alert(`${attraction.getSummary()}\n${highRated}\n\n${attraction.description}`);
+    }
+
+    // Contact form events & validation
+    function setupContact(){
+      const form = document.getElementById('contactForm');
+      const result = document.getElementById('contactResult');
+      form.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if(name.length < 2){ result.textContent = 'Please enter a valid name.'; return; }
+        if(!email.includes('@') || !email.includes('.')){ result.textContent = 'Please enter a valid email.'; return; }
+
+        result.textContent = `Thanks ${name}! Message length: ${message.length} characters.`; // operators in template
+        form.reset();
+      });
+    }
+
+    // Surprise button
+    function setupSurprise(){
+      const btn = document.getElementById('surpriseBtn');
+      const out = document.getElementById('surprise');
+      btn.addEventListener('click', () => {
+        const pick = attractions[Math.floor(Math.random()*attractions.length)];
+        out.innerHTML = `<h4>${pick.name}</h4><p>${pick.city} — Rating ${pick.rating}</p><p>${pick.description}</p>`;
+      });
+      // show featured on load using variables/operators
+      const featured = attractions[featuredIndex];
+      out.innerHTML = `<strong>Featured:</strong> ${featured.getSummary()}`;
+    }
+
+    // Simple SPA navigation (events, functions)
+    function showSection(id){
+      const sections = ['home','attractions','gallery','contact'];
+      for(const s of sections){
+        const el = document.getElementById(s);
+        if(el) el.classList.toggle('hidden', s !== id);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      renderAttractions(); renderGallery(); setupContact(); setupSurprise();
+      // nav events
+      document.querySelectorAll('nav a, [data-target]').forEach(el=>{
+        el.addEventListener('click', ()=>{
+          const target = el.getAttribute('data-target');
+          if(target) showSection(target);
+        });
+      });
+      // show home initially
+      showSection('home');
+    });
+  </script>
+</body>
+</html>
