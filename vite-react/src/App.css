@@ -40,3 +40,37 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Tic-Tac-Toe styles */
+.game-root {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.game {
+  display: flex;
+  gap: 24px;
+  align-items: start;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 8px;
+}
+.square {
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #333;
+  cursor: pointer;
+}
+.square:hover { background: #f3f3f3 }
+.info { display:flex; flex-direction:column; gap:12px; }
+.status { font-weight: 600 }
+.reset { padding:8px 12px }
