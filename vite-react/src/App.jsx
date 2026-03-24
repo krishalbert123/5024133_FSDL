@@ -1,140 +1,370 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
-const LINES = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-]
+// ============================================
+// STUDENT REGISTRATION WEBSITE
+// Demonstrates: Components, Props, State, Forms, Events
+// ============================================
 
-function calculateWinner(sq) {
-  for (let [a, b, c] of LINES) {
-    if (sq[a] && sq[a] === sq[b] && sq[a] === sq[c]) return sq[a]
-  }
-  return null
-}
-
-function Square({ value, onClick }) {
+// Component 1: Input Field Component (receives props)
+function InputField({ label, name, type, value, onChange, required }) {
   return (
-    <button className="square" onClick={onClick}>
-      {value}
-    </button>
+    <div className="input-group">
+      <label htmlFor={name}>{label} {required && <span className="required">*</span>}</label>
+      <input
+        type={type}
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="input-field"
+      />
+    </div>
   )
 }
 
-function evaluate(sq, depth) {
-  const w = calculateWinner(sq)
-  if (w === 'O') return 10 - depth
-  if (w === 'X') return -10 + depth
-  return 0
+// Component 2: Select Field Component (receives props)
+function SelectField({ label, name, value, onChange, options, required }) {
+  return (
+    <div className="input-group">
+      <label htmlFor={name}>{label} {required && <span className="required">*</span>}</label>
+      <select
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="select-field"
+      >
+        <option value="">-- Select {label} --</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
 }
 
-function minimax(sq, depth, isMaximizing) {
-  const winner = calculateWinner(sq)
-  if (winner || sq.every(Boolean)) return evaluate(sq, depth)
+// Component 3: Registration Form Component (manages form state)
+function RegistrationForm({ onSubmit }) {
+  // State management for form fields
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    dob: '',
+    gender: '',
+    course: '',
+    address: '',
+    country: '',
+    agreeTerms: false
+  })
 
-  if (isMaximizing) {
-    let best = -Infinity
-    for (let i = 0; i < 9; i++) {
-      if (!sq[i]) {
-        sq[i] = 'O'
-        best = Math.max(best, minimax(sq, depth + 1, false))
-        sq[i] = null
-      }
-    }
-    return best
-  } else {
-    let best = Infinity
-    for (let i = 0; i < 9; i++) {
-      if (!sq[i]) {
-        sq[i] = 'X'
-        best = Math.min(best, minimax(sq, depth + 1, true))
-        sq[i] = null
-      }
-    }
-    return best
-  }
-}
+  // State for form validation errors
+  const [errors, setErrors] = useState({})
 
-function findBestMove(sq) {
-  let bestScore = -Infinity
-  let move = -1
-  for (let i = 0; i < 9; i++) {
-    if (!sq[i]) {
-      sq[i] = 'O'
-      const score = minimax(sq, 0, false)
-      sq[i] = null
-      if (score > bestScore) {
-        bestScore = score
-        move = i
-      }
+  // Event handler for input changes (for all input fields)
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
+    // Clear error for this field when user starts editing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
     }
   }
-  return move
-}
 
-export default function App() {
-  const [squares, setSquares] = useState(Array(9).fill(null))
-  const [xIsNext, setXIsNext] = useState(true) // human is X
-
-  const winner = calculateWinner(squares)
-
-  function handleClick(i) {
-    if (winner || squares[i] || !xIsNext) return
-    const next = squares.slice()
-    next[i] = 'X'
-    setSquares(next)
-    setXIsNext(false)
+  // Form validation
+  const validateForm = () => {
+    const newErrors = {}
+    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required'
+    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required'
+    if (!formData.email.trim()) newErrors.email = 'Email is required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email'
+    if (!formData.phone.trim()) newErrors.phone = 'Phone is required'
+    if (!formData.dob) newErrors.dob = 'Date of birth is required'
+    if (!formData.gender) newErrors.gender = 'Gender is required'
+    if (!formData.course) newErrors.course = 'Course is required'
+    if (!formData.country) newErrors.country = 'Country is required'
+    if (!formData.agreeTerms) newErrors.agreeTerms = 'You must agree to terms'
+    return newErrors
   }
 
-  useEffect(() => {
-    if (!xIsNext && !winner && !squares.every(Boolean)) {
-      const id = setTimeout(() => {
-        const mv = findBestMove(squares.slice())
-        if (mv >= 0) {
-          const next = squares.slice()
-          next[mv] = 'O'
-          setSquares(next)
-        }
-        setXIsNext(true)
-      }, 250)
-      return () => clearTimeout(id)
+  // Event handler for form submission
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const newErrors = validateForm()
+    
+    if (Object.keys(newErrors).length === 0) {
+      onSubmit(formData)
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        dob: '',
+        gender: '',
+        course: '',
+        address: '',
+        country: '',
+        agreeTerms: false
+      })
+      setErrors({})
+    } else {
+      setErrors(newErrors)
     }
-  }, [xIsNext, squares, winner])
-
-  function reset(aiStarts = false) {
-    setSquares(Array(9).fill(null))
-    setXIsNext(!aiStarts)
   }
 
-  const status = winner
-    ? `Winner: ${winner}`
-    : squares.every(Boolean)
-    ? 'Draw'
-    : `Next: ${xIsNext ? 'X (you)' : 'O (computer)'}`
+  // Event handler for reset button
+  const handleReset = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      dob: '',
+      gender: '',
+      course: '',
+      address: '',
+      country: '',
+      agreeTerms: false
+    })
+    setErrors({})
+  }
 
   return (
-    <div className="game-root">
-      <h1>Tic‑Tac‑Toe (vs Computer)</h1>
-      <div className="game">
-        <div className="board">
-          {squares.map((s, i) => (
-            <Square key={i} value={s} onClick={() => handleClick(i)} />
-          ))}
-        </div>
-        <div className="info">
-          <div className="status">{status}</div>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button className="reset" onClick={() => reset(false)}>Reset (You start)</button>
-            <button className="reset" onClick={() => reset(true)}>Reset (AI starts)</button>
-          </div>
-        </div>
+    <form onSubmit={handleSubmit} className="registration-form">
+      <h2>Student Registration Form</h2>
+      
+      <div className="form-row">
+        <InputField
+          label="First Name"
+          name="firstName"
+          type="text"
+          value={formData.firstName}
+          onChange={handleInputChange}
+          required={true}
+        />
+        {errors.firstName && <span className="error">{errors.firstName}</span>}
+
+        <InputField
+          label="Last Name"
+          name="lastName"
+          type="text"
+          value={formData.lastName}
+          onChange={handleInputChange}
+          required={true}
+        />
+        {errors.lastName && <span className="error">{errors.lastName}</span>}
+      </div>
+
+      <InputField
+        label="Email Address"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleInputChange}
+        required={true}
+      />
+      {errors.email && <span className="error">{errors.email}</span>}
+
+      <div className="form-row">
+        <InputField
+          label="Phone Number"
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleInputChange}
+          required={true}
+        />
+        {errors.phone && <span className="error">{errors.phone}</span>}
+
+        <InputField
+          label="Date of Birth"
+          name="dob"
+          type="date"
+          value={formData.dob}
+          onChange={handleInputChange}
+          required={true}
+        />
+        {errors.dob && <span className="error">{errors.dob}</span>}
+      </div>
+
+      <div className="form-row">
+        <SelectField
+          label="Gender"
+          name="gender"
+          value={formData.gender}
+          onChange={handleInputChange}
+          options={['Male', 'Female', 'Other']}
+          required={true}
+        />
+        {errors.gender && <span className="error">{errors.gender}</span>}
+
+        <SelectField
+          label="Course"
+          name="course"
+          value={formData.course}
+          onChange={handleInputChange}
+          options={['BCA', 'B.Tech', 'BSc', 'B.Com', 'BA']}
+          required={true}
+        />
+        {errors.course && <span className="error">{errors.course}</span>}
+      </div>
+
+      <InputField
+        label="Address"
+        name="address"
+        type="text"
+        value={formData.address}
+        onChange={handleInputChange}
+        required={false}
+      />
+
+      <SelectField
+        label="Country"
+        name="country"
+        value={formData.country}
+        onChange={handleInputChange}
+        options={['India', 'USA', 'UK', 'Canada', 'Australia']}
+        required={true}
+      />
+      {errors.country && <span className="error">{errors.country}</span>}
+
+      <div className="checkbox-group">
+        <input
+          type="checkbox"
+          id="agreeTerms"
+          name="agreeTerms"
+          checked={formData.agreeTerms}
+          onChange={handleInputChange}
+          className="checkbox-input"
+        />
+        <label htmlFor="agreeTerms">I agree to the terms and conditions</label>
+        {errors.agreeTerms && <span className="error">{errors.agreeTerms}</span>}
+      </div>
+
+      <div className="button-group">
+        <button type="submit" className="btn btn-primary">Register</button>
+        <button type="reset" onClick={handleReset} className="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+  )
+}
+
+// Component 4: Student Card Component (displays individual student - receives props)
+function StudentCard({ student, onDelete }) {
+  return (
+    <div className="student-card">
+      <div className="student-header">
+        <h3>{student.firstName} {student.lastName}</h3>
+        <button 
+          onClick={() => onDelete(student.id)}
+          className="btn-delete"
+          title="Delete this student"
+        >
+          ✕
+        </button>
+      </div>
+      <div className="student-details">
+        <p><strong>Email:</strong> {student.email}</p>
+        <p><strong>Phone:</strong> {student.phone}</p>
+        <p><strong>DOB:</strong> {student.dob}</p>
+        <p><strong>Gender:</strong> {student.gender}</p>
+        <p><strong>Course:</strong> {student.course}</p>
+        <p><strong>Address:</strong> {student.address || 'N/A'}</p>
+        <p><strong>Country:</strong> {student.country}</p>
       </div>
     </div>
   )
 }
+
+// Component 5: Student List Component (displays all students - receives props)
+function StudentList({ students, onDelete, totalCount }) {
+  return (
+    <div className="student-list-section">
+      <div className="list-header">
+        <h2>Registered Students</h2>
+        <span className="student-count">Total: {totalCount}</span>
+      </div>
+      
+      {students.length === 0 ? (
+        <div className="no-students">
+          <p>No students registered yet. Fill the form to register!</p>
+        </div>
+      ) : (
+        <div className="students-grid">
+          {students.map((student) => (
+            <StudentCard 
+              key={student.id} 
+              student={student}
+              onDelete={onDelete}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Main Component: App (manages overall state)
+function App() {
+  // State management for students list
+  const [students, setStudents] = useState([])
+
+  // Event handler for new student registration
+  const handleStudentRegistration = (formData) => {
+    const newStudent = {
+      id: Date.now(), // Simple ID generation
+      ...formData
+    }
+    setStudents(prev => [...prev, newStudent])
+    alert(`${formData.firstName} ${formData.lastName} registered successfully!`)
+  }
+
+  // Event handler for deleting a student
+  const handleDeleteStudent = (studentId) => {
+    if (window.confirm('Are you sure you want to delete this student?')) {
+      setStudents(prev => prev.filter(student => student.id !== studentId))
+    }
+  }
+
+  return (
+    <div className="app-container">
+      <header className="app-header">
+        <h1>🎓 Student Registration Portal</h1>
+        <p>React App demonstrating Components, Props, State, Forms, and Events</p>
+      </header>
+
+      <main className="app-main">
+        <div className="form-section">
+          <RegistrationForm onSubmit={handleStudentRegistration} />
+        </div>
+
+        <div className="list-section">
+          <StudentList 
+            students={students}
+            onDelete={handleDeleteStudent}
+            totalCount={students.length}
+          />
+        </div>
+      </main>
+
+      <footer className="app-footer">
+        <p>&copy; 2024 Student Registration Portal | Built with React</p>
+      </footer>
+    </div>
+  )
+}
+
+export default App
