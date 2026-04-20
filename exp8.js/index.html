@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appointmentApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Appointment Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="AppointmentController">
+    <div class="container">
+        <h1>Patient Appointment Manager</h1>
+        
+        <form name="appointmentForm" ng-submit="submitAppointment()" novalidate>
+            <div class="form-group">
+                <label for="patientName">Patient Name:</label>
+                <input type="text" id="patientName" name="patientName" ng-model="appointment.patientName" required ng-minlength="2" ng-blur="validateField('patientName')">
+                <div class="error" ng-show="appointmentForm.patientName.$invalid && appointmentForm.patientName.$touched">
+                    <span ng-show="appointmentForm.patientName.$error.required">Patient name is required.</span>
+                    <span ng-show="appointmentForm.patientName.$error.minlength">Patient name must be at least 2 characters.</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" ng-model="appointment.email" required ng-blur="validateField('email')">
+                <div class="error" ng-show="appointmentForm.email.$invalid && appointmentForm.email.$touched">
+                    <span ng-show="appointmentForm.email.$error.required">Email is required.</span>
+                    <span ng-show="appointmentForm.email.$error.email">Please enter a valid email address.</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" ng-model="appointment.phone" required ng-pattern="/^\d{10}$/" ng-blur="validateField('phone')">
+                <div class="error" ng-show="appointmentForm.phone.$invalid && appointmentForm.phone.$touched">
+                    <span ng-show="appointmentForm.phone.$error.required">Phone number is required.</span>
+                    <span ng-show="appointmentForm.phone.$error.pattern">Phone number must be 10 digits.</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="appointmentDate">Appointment Date:</label>
+                <input type="date" id="appointmentDate" name="appointmentDate" ng-model="appointment.appointmentDate" required ng-blur="validateField('appointmentDate')">
+                <div class="error" ng-show="appointmentForm.appointmentDate.$invalid && appointmentForm.appointmentDate.$touched">
+                    <span ng-show="appointmentForm.appointmentDate.$error.required">Appointment date is required.</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="doctorName">Doctor Name:</label>
+                <input type="text" id="doctorName" name="doctorName" ng-model="appointment.doctorName" required ng-minlength="2" ng-blur="validateField('doctorName')">
+                <div class="error" ng-show="appointmentForm.doctorName.$invalid && appointmentForm.doctorName.$touched">
+                    <span ng-show="appointmentForm.doctorName.$error.required">Doctor name is required.</span>
+                    <span ng-show="appointmentForm.doctorName.$error.minlength">Doctor name must be at least 2 characters.</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="symptoms">Symptoms:</label>
+                <textarea id="symptoms" name="symptoms" ng-model="appointment.symptoms" required ng-minlength="5" ng-blur="validateField('symptoms')"></textarea>
+                <div class="error" ng-show="appointmentForm.symptoms.$invalid && appointmentForm.symptoms.$touched">
+                    <span ng-show="appointmentForm.symptoms.$error.required">Symptoms are required.</span>
+                    <span ng-show="appointmentForm.symptoms.$error.minlength">Symptoms must be at least 5 characters.</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" ng-disabled="appointmentForm.$invalid">{{ isEditing ? 'Update Appointment' : 'Add Appointment' }}</button>
+                <button type="button" ng-click="resetForm()">Reset Form</button>
+            </div>
+        </form>
+        
+        <div class="search-group">
+            <label for="search">Search Appointments:</label>
+            <input type="text" id="search" ng-model="searchQuery" placeholder="Search by name, email, or doctor">
+        </div>
+        
+        <h2>Appointments List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date</th>
+                    <th>Doctor</th>
+                    <th>Symptoms</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="appt in appointments | filter: searchQuery">
+                    <td>{{ appt.patientName }}</td>
+                    <td>{{ appt.email }}</td>
+                    <td>{{ appt.phone }}</td>
+                    <td>{{ appt.appointmentDate | date:'mediumDate' }}</td>
+                    <td>{{ appt.doctorName }}</td>
+                    <td>{{ appt.symptoms }}</td>
+                    <td>
+                        <button ng-click="editAppointment($index)">Edit</button>
+                        <button ng-click="deleteAppointment($index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
